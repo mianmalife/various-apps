@@ -13,11 +13,11 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                test: /\.(css|less)$/,
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpe?g|gif|svg)$/i,
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]',
@@ -30,12 +30,15 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: '首页',
             template: 'src/index.html',
-            chunks: ['main']
+            inject: true,
+            chunks: ['detail', 'main'],
+            // chunksSortMode: 'manual',
         }),
         new HtmlWebpackPlugin({
             title: '详情',
             filename: 'detail.html',
             template: 'src/detail.html',
+            inject: true,
             chunks: ['detail']
         })
     ]

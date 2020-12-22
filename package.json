@@ -18,9 +18,14 @@
   },
   "homepage": "https://github.com/mianmalife/Webpack#readme",
   "devDependencies": {
+    "autoprefixer": "^10.1.0",
     "css-loader": "^5.0.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.0.0-alpha.15",
+    "less": "^4.0.0",
+    "less-loader": "^7.1.0",
+    "postcss": "^8.2.1",
+    "postcss-loader": "^4.1.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.10.1",
     "webpack-cli": "^4.2.0"
