@@ -11,5 +11,10 @@
   css-loader是用来加载js中引入的css的    css in js
   style-loader用来动态生成style标签插入head标签中的
   ```
+  * js文件推荐使用 chunkhash 自身内容改变 则改变 不影响css
+  * css文件推荐使用 contenthash  自身内容改变 则改变
+  ```
+  学习 webpack 代理
+  ```
 
   
