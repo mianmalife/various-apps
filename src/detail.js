@@ -1,1 +1,3 @@
-console.log('detail')
+export default function () {
+    console.log('detail1w')
+}

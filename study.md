@@ -14,9 +14,8 @@
   * js文件推荐使用 chunkhash 自身内容改变 则改变 不影响css
   * css文件推荐使用 contenthash  自身内容改变 则改变
   ```
-  git bash 中文乱码解决方法
-  1. 右键 option -> text => zh-CN -> utf-8 
-  2. git config --global core.quotepath false
+  path.join
+  path.resolve
   ```
 
   

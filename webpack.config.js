@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -7,7 +8,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: '[name][chunkhash].js'
+        filename: '[name][hash:6].js'
     },
     module: {
         rules: [
@@ -16,6 +17,7 @@ module.exports = {
                 use: [{
                     loader: MiniCssExtractPlugin.loader,
                     options: {
+                        disable: true,
                         publicPath: '../',
                     },
                 }, 'css-loader', 'postcss-loader', 'less-loader']
@@ -41,8 +43,10 @@ module.exports = {
     resolveLoader: {
         modules: ['node_modules', 'test-loaders']
     },
+    devtool: 'source-map',
     devServer: {
-        contentBase: './dist'
+        contentBase: path.resolve(__dirname, 'dist'),
+        hot: true
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -52,8 +56,9 @@ module.exports = {
             chunks: ['main']
         }),
         new MiniCssExtractPlugin({
-            filename: 'css/index-[contenthash].css'
+            filename: 'css/index-[hash:6].css'
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ]
 }
