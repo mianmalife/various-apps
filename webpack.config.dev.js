@@ -14,13 +14,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(css|less)$/,
-                use: [{
-                    loader: MiniCssExtractPlugin.loader,
-                    options: {
-                        disable: true,
-                        publicPath: '../',
-                    },
-                }, 'css-loader', 'postcss-loader', 'less-loader']
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
