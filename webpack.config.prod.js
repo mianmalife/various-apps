@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
     mode: 'production',
-    entry: './src/index.js',
+    entry: ['@babel/polyfill', './src/index.js'],
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name][hash:6].js'
@@ -29,17 +29,17 @@ module.exports = {
                 }
             },
             {
-                test: /\.js$/,
-                use: [
-                    {
-                        loader: 'test'
+                test: /\.m?(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                        plugins: ['@babel/plugin-transform-runtime']
                     }
-                ]
+                }
             }
         ]
-    },
-    resolveLoader: {
-        modules: ['node_modules', 'test-loaders']
     },
     plugins: [
         new HtmlWebpackPlugin({
