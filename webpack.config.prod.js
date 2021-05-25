@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
     mode: 'production',
@@ -24,7 +25,7 @@ module.exports = {
                 test: /\.(png|jpe?g|gif|svg)$/i,
                 loader: 'file-loader',
                 options: {
-                    name: '[name].[ext]',
+                    name: '[name][hash:6].[ext]',
                     outputPath: 'image'
                 }
             },
@@ -50,6 +51,14 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: 'css/index-[hash:6].css'
+        }),
+        new OptimizeCssAssetsPlugin({
+            // assetNameRegExp: /\.optimize\.css$/g,
+            // cssProcessor: require('cssnano'),
+            // cssProcessorPluginOptions: {
+            //     preset: ['default', { discardComments: { removeAll: true } }],
+            // },
+            // canPrint: true
         }),
         new CleanWebpackPlugin()
     ]

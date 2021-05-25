@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/index/index.less"],"names":[],"mappings":"AAAA;EACI;EACA;EACA;AACJ","file":"index/index-ba841cdda9b59907f5b1.css","sourcesContent":["#app {\n    width: 100px;\n    height: 100px;\n    background-color: aqua;\n}"],"sourceRoot":""}

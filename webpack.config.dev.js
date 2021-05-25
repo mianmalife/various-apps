@@ -20,7 +20,7 @@ module.exports = {
                 test: /\.(png|jpe?g|gif|svg)$/i,
                 loader: 'file-loader',
                 options: {
-                    name: '[name].[ext]',
+                    name: '[name][hash:6].[ext]',
                     outputPath: 'image'
                 }
             },
