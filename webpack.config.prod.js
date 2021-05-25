@@ -45,7 +45,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: '首页',
-            template: 'src/index.html',
+            template: 'public/index.html',
             inject: true,
             chunks: ['main']
         }),
