@@ -5,7 +5,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: {
+        test1: './src/page/test1/index.js',
+        test2: './src/page/test2/index.js'
+    },
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name][hash:6].js'
@@ -36,9 +39,6 @@ module.exports = {
                 }
             }
         ]
-    },
-    resolveLoader: {
-        modules: ['node_modules', 'test-loaders']
     },
     devtool: 'source-map',
     devServer: {

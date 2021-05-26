@@ -5,10 +5,14 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
     mode: 'production',
-    entry: ['@babel/polyfill', './src/index.js'],
+    entry: {
+        test1: ['@babel/polyfill', './src/page/test1/index.js'],
+        test2: ['@babel/polyfill', './src/page/test2/index.js']
+    },
+    // entry: ['@babel/polyfill', './src/page/test1/index.js', './src/page/test2/index.js'],
     output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: '[name][hash:6].js'
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name]/[name][hash:6].js'
     },
     module: {
         rules: [
@@ -44,22 +48,28 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: '首页',
-            template: 'public/index.html',
-            inject: true,
-            chunks: ['main']
+            title: 'test1',
+            filename: 'test1/test1.html',
+            template: './src/page/test1/index.html',
+            chunks: ['test1']
+        }),
+        new HtmlWebpackPlugin({
+            title: 'test2',
+            filename: 'test2/test2.html',
+            template: './src/page/test2/index.html',
+            chunks: ['test2']
         }),
         new MiniCssExtractPlugin({
             filename: 'css/index-[hash:6].css'
         }),
-        new OptimizeCssAssetsPlugin({
-            // assetNameRegExp: /\.optimize\.css$/g,
-            // cssProcessor: require('cssnano'),
-            // cssProcessorPluginOptions: {
-            //     preset: ['default', { discardComments: { removeAll: true } }],
-            // },
-            // canPrint: true
-        }),
+        // new OptimizeCssAssetsPlugin({
+        //     // assetNameRegExp: /\.optimize\.css$/g,
+        //     // cssProcessor: require('cssnano'),
+        //     // cssProcessorPluginOptions: {
+        //     //     preset: ['default', { discardComments: { removeAll: true } }],
+        //     // },
+        //     // canPrint: true
+        // }),
         new CleanWebpackPlugin()
     ]
 }
