@@ -3,7 +3,7 @@ import './index.less'
 export default class App extends React.Component {
     render() {
         return <div>
-            hello Test2
+            hello Test3
         </div>
     }
 }

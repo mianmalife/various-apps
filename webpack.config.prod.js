@@ -1,15 +1,12 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const setMpa = require('./setMpa.js')
+const { entry, htmlWebpackPlugins } = setMpa()
 module.exports = {
     mode: 'production',
-    entry: {
-        test1: ['@babel/polyfill', './src/page/test1/index.js'],
-        test2: ['@babel/polyfill', './src/page/test2/index.js']
-    },
-    // entry: ['@babel/polyfill', './src/page/test1/index.js', './src/page/test2/index.js'],
+    entry: entry,
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name]/[name][hash:6].js'
@@ -46,30 +43,11 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'test1',
-            filename: 'test1/test1.html',
-            template: './src/page/test1/index.html',
-            chunks: ['test1']
-        }),
-        new HtmlWebpackPlugin({
-            title: 'test2',
-            filename: 'test2/test2.html',
-            template: './src/page/test2/index.html',
-            chunks: ['test2']
-        }),
-        new MiniCssExtractPlugin({
-            filename: 'css/index-[hash:6].css'
-        }),
-        // new OptimizeCssAssetsPlugin({
-        //     // assetNameRegExp: /\.optimize\.css$/g,
-        //     // cssProcessor: require('cssnano'),
-        //     // cssProcessorPluginOptions: {
-        //     //     preset: ['default', { discardComments: { removeAll: true } }],
-        //     // },
-        //     // canPrint: true
-        // }),
-        new CleanWebpackPlugin()
+    plugins: [...htmlWebpackPlugins,
+    new MiniCssExtractPlugin({
+        filename: '[name]/[name]-[hash:6].css'
+    }),
+    new OptimizeCssAssetsPlugin(),
+    new CleanWebpackPlugin()
     ]
 }
