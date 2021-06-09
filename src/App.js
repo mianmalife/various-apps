@@ -6,7 +6,7 @@ console.log(img)
 export default class App extends React.Component {
     render() {
         return <div>
-            hello App
+            hello App0123456
             <img src={img} alt="" />
         </div>
     }

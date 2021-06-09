@@ -1,15 +1,22 @@
 const path = require('path')
 const webpack = require('webpack')
+const WebpackBar = require('webpackbar')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const setMpa = require('./setMpa.js')
 const { entry, htmlWebpackPlugins } = setMpa()
+console.log(path.resolve(__dirname, 'assets'))
 module.exports = {
     mode: 'development',
     entry: entry,
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name][hash:6].js'
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src/assets')
+        }
     },
     module: {
         rules: [
@@ -22,7 +29,8 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name][hash:6].[ext]',
-                    outputPath: 'image'
+                    outputPath: 'image',
+                    publicPath: "../image"
                 }
             },
             {
@@ -43,11 +51,13 @@ module.exports = {
         contentBase: path.resolve(__dirname, 'dist'),
         hot: true
     },
-    plugins: [...htmlWebpackPlugins,
-    new MiniCssExtractPlugin({
-        filename: '[name]/[name]-[hash:6].css'
-    }),
-    new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    plugins: [
+        new WebpackBar(),
+        ...htmlWebpackPlugins,
+        new MiniCssExtractPlugin({
+            filename: '[name]/[name]-[hash:6].css'
+        }),
+        new CleanWebpackPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ]
 }

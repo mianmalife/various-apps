@@ -1,8 +1,10 @@
 const path = require('path')
+const WebpackBar = require('webpackbar')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const setMpa = require('./setMpa.js')
+const webpack = require('webpack')
 const { entry, htmlWebpackPlugins } = setMpa()
 module.exports = {
     mode: 'production',
@@ -10,6 +12,14 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name]/[name][hash:6].js'
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src/assets')
+        }
+    },
+    performance: {
+        hints: false
     },
     module: {
         rules: [
@@ -27,7 +37,8 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name][hash:6].[ext]',
-                    outputPath: 'image'
+                    outputPath: 'image/',
+                    publicPath: "../image"
                 }
             },
             {
@@ -43,11 +54,15 @@ module.exports = {
             }
         ]
     },
-    plugins: [...htmlWebpackPlugins,
-    new MiniCssExtractPlugin({
-        filename: '[name]/[name]-[hash:6].css'
-    }),
-    new OptimizeCssAssetsPlugin(),
-    new CleanWebpackPlugin()
+    plugins: [
+        new WebpackBar({
+            name: 'start build...',
+        }),
+        ...htmlWebpackPlugins,
+        new MiniCssExtractPlugin({
+            filename: '[name]/[name]-[hash:6].css'
+        }),
+        new OptimizeCssAssetsPlugin(),
+        new CleanWebpackPlugin()
     ]
 }
