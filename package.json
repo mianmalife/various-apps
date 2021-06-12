@@ -1,7 +1,7 @@
 {
   "name": "webpack-project",
   "version": "1.0.0",
-  "description": "webpack project",
+  "description": "Webpack multi-page application scaffolding",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
