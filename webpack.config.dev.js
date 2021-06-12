@@ -5,7 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const setMpa = require('./setMpa.js')
 const { entry, htmlWebpackPlugins } = setMpa()
-console.log(path.resolve(__dirname, 'assets'))
 module.exports = {
     mode: 'development',
     entry: entry,

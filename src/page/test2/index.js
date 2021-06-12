@@ -1,5 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Test2 from './test2.js'
+import './index.less'
+export default class App extends React.Component {
+    render() {
+        return <div>
+            hello Test3
+        </div>
+    }
+}
 
-ReactDOM.render(<Test2 />, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'))

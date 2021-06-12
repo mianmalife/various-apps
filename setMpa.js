@@ -11,7 +11,7 @@ const setMpa = () => {
         entry[entryName] = ['@babel/polyfill', item]
         htmlWebpackPlugins.push(new HtmlWebpackPlugin({
             title: entryName,
-            filename: `${entryName}/${entryName}.html`,
+            filename: `${entryName}/index.html`,
             template: path.join(__dirname, `src/page/${entryName}/index.html`),
             chunks: [entryName]
         }))

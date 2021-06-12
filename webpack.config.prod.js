@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const setMpa = require('./setMpa.js')
-const webpack = require('webpack')
 const { entry, htmlWebpackPlugins } = setMpa()
 module.exports = {
     mode: 'production',
