@@ -9,7 +9,7 @@ const instance = axios.create({
     baseURL: BASE_URL
 })
 instance.defaults.timeout = 30000
-axios.interceptors.request.use(config => {
+instance.interceptors.request.use(config => {
     const token = window.localStorage.getItem('userToken') || window.sessionStorage.getItem('userToken')
     config.data = Object.assign({}, config.data, {
         token: token
@@ -23,7 +23,7 @@ axios.interceptors.request.use(config => {
     return error
 })
 
-axios.interceptors.response.use(response => {
+instance.interceptors.response.use(response => {
     if (response.code) {
         switch (response) {
             case 200:
@@ -42,7 +42,7 @@ axios.interceptors.response.use(response => {
     }
     return response
 }, error => {
-    return Promise.reject(error)
+    message.error(JSON.stringify(error.message))
+    return error
 })
-
 export default instance

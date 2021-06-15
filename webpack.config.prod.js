@@ -10,7 +10,7 @@ module.exports = {
     entry: entry,
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name]/[name][hash:6].js'
+        filename: '[name]/[name][hash:12].js'
     },
     resolve: {
         alias: {
@@ -35,7 +35,7 @@ module.exports = {
                 test: /\.(png|jpe?g|gif|svg)$/i,
                 loader: 'file-loader',
                 options: {
-                    name: '[name][hash:6].[ext]',
+                    name: '[name][hash:12].[ext]',
                     outputPath: 'image/',
                     publicPath: "../image"
                 }
@@ -59,7 +59,7 @@ module.exports = {
         }),
         ...htmlWebpackPlugins,
         new MiniCssExtractPlugin({
-            filename: '[name]/[name]-[hash:6].css'
+            filename: '[name]/[name]-[hash:12].css'
         }),
         new OptimizeCssAssetsPlugin(),
         new CleanWebpackPlugin()

@@ -3,14 +3,17 @@ const webpack = require('webpack')
 const WebpackBar = require('webpackbar')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin")
 const setMpa = require('./setMpa.js')
 const { entry, htmlWebpackPlugins } = setMpa()
-module.exports = {
+const smp = new SpeedMeasurePlugin()
+module.exports = smp.wrap({
     mode: 'development',
     entry: entry,
     output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: '[name][hash:6].js'
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name][hash:12].js'
     },
     resolve: {
         alias: {
@@ -54,9 +57,10 @@ module.exports = {
         new WebpackBar(),
         ...htmlWebpackPlugins,
         new MiniCssExtractPlugin({
-            filename: '[name]/[name]-[hash:6].css'
+            filename: '[name]/[name]-[hash:12].css'
         }),
         new CleanWebpackPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new BundleAnalyzerPlugin()
     ]
-}
+})
