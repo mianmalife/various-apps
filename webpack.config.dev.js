@@ -3,11 +3,12 @@ const webpack = require('webpack')
 const WebpackBar = require('webpackbar')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const SpeedMeasurePlugin = require("speed-measure-webpack-plugin")
+// const SpeedMeasurePlugin = require("speed-measure-webpack-plugin")
+// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const setMpa = require('./setMpa.js')
 const { entry, htmlWebpackPlugins } = setMpa()
-const smp = new SpeedMeasurePlugin()
-module.exports = smp.wrap({
+// const smp = new SpeedMeasurePlugin()
+module.exports = {
     mode: 'development',
     entry: entry,
     output: {
@@ -24,7 +25,7 @@ module.exports = smp.wrap({
         rules: [
             {
                 test: /\.(css|less)$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader', 'thread-loader', 'less-loader']
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'cache-loader', 'thread-loader', 'less-loader']
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
@@ -64,7 +65,8 @@ module.exports = smp.wrap({
         new MiniCssExtractPlugin({
             filename: '[name]/[name]-[hash:12].css'
         }),
+        new webpack.HotModuleReplacementPlugin(),
         new CleanWebpackPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        // new HardSourceWebpackPlugin()
     ]
-})
+}

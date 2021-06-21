@@ -13,6 +13,7 @@ const setMpa = () => {
             title: entryName,
             filename: `${entryName}/index.html`,
             template: path.join(__dirname, `src/page/${entryName}/index.html`),
+            inject: true,
             chunks: [entryName]
         }))
     })
