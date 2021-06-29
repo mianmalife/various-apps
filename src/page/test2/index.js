@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.less'
+import './index.scss'
 export default class App extends React.Component {
     render() {
-        return <div>
+        return <div className="test2">
             hello Test3
         </div>
     }

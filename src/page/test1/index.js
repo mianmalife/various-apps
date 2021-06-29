@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import { DatePicker, message } from 'antd'
 import 'antd/dist/antd.css'
 import './index.less'
-import smile from '@/image/a.jpg'
-import { getUserInfo } from '../../request/api'
+import smile from '@/assets/image/a.jpg'
+import { getUserInfo } from '@/request/api'
 export default class App extends React.Component {
     componentDidMount() {
         getUserInfo({ a: 1, b: 2 }).then(res => {
