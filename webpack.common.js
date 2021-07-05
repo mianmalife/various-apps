@@ -1,4 +1,5 @@
 const path = require('path')
+// const { extendDefaultPlugins } = require('svgo')
 const WebpackBar = require('webpackbar')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -11,7 +12,7 @@ module.exports = {
         filename: '[name]/[name][hash:12].js'
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.css', '.less', '.json'],
+        extensions: ['.js', '.jsx', '.css', '.less', '.scss', '.json'],
         alias: {
             '@': path.resolve(__dirname, 'src')
         }
@@ -46,7 +47,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|jpe?g|gif|svg)$/i,
+                test: /\.(png|jpe?g|gif)$/i,
                 include: path.resolve(__dirname, 'src'),
                 use: [{
                     loader: 'file-loader',
@@ -56,6 +57,32 @@ module.exports = {
                         publicPath: "../image"
                     }
                 }]
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-react']
+                        }
+                    },
+                    {
+                        loader: '@svgr/webpack',
+                        options: {
+                            babel: false,
+                            icon: true,
+                        },
+                    },
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name][hash:6].[ext]',
+                            outputPath: 'image',
+                            publicPath: "../image"
+                        }
+                    }
+                ],
             },
             {
                 test: /\.m?(js|jsx)$/,
