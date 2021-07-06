@@ -8,7 +8,7 @@ const setMpa = () => {
     entries.map(item => {
         const math = item.match(/src\/page\/(.*)\/index\.js$/)
         const entryName = math?.[1]
-        entry[entryName] = ['@babel/polyfill', item]
+        entry[entryName] = item
         htmlWebpackPlugins.push(new HtmlWebpackPlugin({
             title: entryName,
             filename: `${entryName}/index.html`,

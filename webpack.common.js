@@ -93,7 +93,9 @@ module.exports = {
                         loader: 'babel-loader?cacheDirectory=true',
                         options: {
                             presets: ['@babel/preset-env', '@babel/preset-react'],
-                            plugins: ['@babel/plugin-transform-runtime']
+                            plugins: [['@babel/plugin-transform-runtime', {
+                                corejs: 3
+                            }]]
                         }
                     }]
             }
