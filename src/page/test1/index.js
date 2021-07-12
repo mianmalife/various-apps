@@ -36,6 +36,20 @@ export default class App extends React.Component {
             currentLocale: sessionStorage['locale'] ? sessionStorage['locale'] : locale,
             locales: this.locales
         }).then(() => {
+            console.log(sessionStorage['locale'], '999')
+            if (sessionStorage['locale'] === 'en_US') {
+                this.setState({
+                    locale: enUS
+                }, () => {
+                    dayjs.locale('en')
+                })
+            } else {
+                this.setState({
+                    locale: zhCN
+                }, () => {
+                    dayjs.locale('zh-cn')
+                })
+            }
             this.setState({ intlDone: true })
         })
     }
