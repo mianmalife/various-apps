@@ -4,13 +4,13 @@ const WebpackBar = require('webpackbar')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
-  entry: ['@babel/polyfill', './src/index.js'],
+  entry: ['@babel/polyfill', './src/index.tsx'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name][hash:12].js'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css', '.less', '.scss', '.json'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.css', '.less', '.scss', '.json'],
     alias: {
       '@': path.resolve(__dirname, 'src')
     }
@@ -90,6 +90,19 @@ module.exports = {
             loader: 'babel-loader?cacheDirectory=true',
             options: {
               presets: ['@babel/preset-env', '@babel/preset-react'],
+              plugins: ['@babel/plugin-transform-runtime']
+            }
+          }]
+      },
+      {
+        test: /\.ts(x)$/,
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
+        use: [
+          {
+            loader: 'babel-loader?cacheDirectory=true',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
               plugins: ['@babel/plugin-transform-runtime']
             }
           }]
