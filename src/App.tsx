@@ -6,7 +6,9 @@ import 'dayjs/locale/zh-cn'
 import 'antd/dist/antd.less'
 import './index.less'
 import img from '@/assets/image/smile.jpg'
+import User from '@/interfaces/user'
 dayjs.locale('zh-cn')
+console.log(User)
 export default class App extends React.Component {
     render() {
         return <ConfigProvider locale={zhCN}><div>

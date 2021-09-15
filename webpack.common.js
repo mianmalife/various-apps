@@ -95,7 +95,7 @@ module.exports = {
           }]
       },
       {
-        test: /\.ts(x)$/,
+        test: /\.m?(ts|tsx)$/,
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),
         use: [
