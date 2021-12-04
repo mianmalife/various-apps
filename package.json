@@ -7,6 +7,9 @@
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": "eslint --fix"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/mianmalife/Webpack.git"
@@ -26,16 +29,26 @@
     "@svgr/webpack": "^5.5.0",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
     "autoprefixer": "^10.1.0",
     "babel-loader": "^8.2.2",
     "cache-loader": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-webpack-plugin": "2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.1",
     "less": "^4.0.0",
     "less-loader": "^7.1.0",
+    "lint-staged": "^12.1.2",
     "mini-css-extract-plugin": "^1.3.3",
     "optimize-css-assets-webpack-plugin": "^4.0.3",
     "postcss": "^8.2.1",

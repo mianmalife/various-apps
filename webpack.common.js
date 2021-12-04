@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 module.exports = {
   entry: ['@babel/polyfill', './src/index.tsx'],
   output: {
@@ -115,6 +116,10 @@ module.exports = {
       template: 'public/index.html',
       inject: true,
       chunks: ['main']
+    }),
+    new ESLintPlugin({
+      context: './src',
+      extensions: ['js', 'jsx', 'ts', 'tsx']
     }),
     new WebpackBar(),
     new CleanWebpackPlugin()
